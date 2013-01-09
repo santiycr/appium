@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Appium by appium</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/appium/appium">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/appium/appium/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/appium/appium/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Appium</h1>
+          <p>&quot;Selenium for Apps&quot; (Test automate native or hybrid iOS apps with UIAutomation and Selenium WebDriver.)</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/appium">appium</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>Appium</h1>
+
+<p>Appium is a test automation tool for use with native and hybrid iOS applications. It uses the webdriver JSON  wire protocol to drive Apple's UIAutomation. Appium is based on <a href="http://github.com/penguinho">Dan Cuellar's</a> work on iOS Auto.</p>
+
+<p>Appium uses the <a href="http://www.bottlepy.org">Bottle micro web-framework</a>, and has the goal of working with all off the shelf Selenium client libraries.</p>
+
+<p>There are two big benefits to testing with Appium:</p>
+
+<p>1: Appium uses Apple's UIAutomation library under the hood to perform the automation, which means you do not have to recompile your app or modify in any way to be able to test automate it.</p>
+
+<p>2: With Appium, you are able to write your test in your choice of programming language, using the Selenium WebDriver API and language-specific client libraries. If you only used UIAutomation, you would be required to write tests in JavaScript, and only run the tests through the Instruments application. With Appium, you can test your native iOS app with any language, and with your preferred dev tools.</p>
+
+<h2>Quick Start</h2>
+
+<p>To get started, clone the repo:<br><code>git clone git://github.com/hugs/appium</code></p>
+
+<p>Next, change into the 'appium' directory, and install dependencies:<br><code>pip install -r requirements.txt</code></p>
+
+<p>To avoid a security dialog that can appear when launching your iOS app, you need to modify your /etc/authorization file. You can do this by settings the element following &lt;allow-root&gt; under &lt;key&gt;system.privilege.taskport&lt;/key&gt; to &lt;true/&gt; or by running the supplied python script (at your own risk)<br><code>sudo python authorize.py</code><br></p>
+
+<p>To launch an interpreter for sending raw UIAutomation javascript commands run:<br>
+For the Simulator:<br><code>python appium.py "path_to_your_ios_.app"</code> <br>
+For a Device:<br><code>python appium.py com.yourApps.BundleID -U &lt;DEVICE_UDID&gt;</code> <br></p>
+
+<p>To launch a webdriver-compatible server, run:<br>
+For the Simulator:<br><code>python server.py "path_to_your_ios_.app"</code> <br>
+For a Device:<br><code>python server.py com.yourApps.BundleID -U &lt;DEVICE_UDID&gt;</code> <br></p>
+
+<p>Tests can be written using raw javascript or webdriver.</p>
+
+<p>An example of the raw javascript approach lives in <code>sample-code/js-test.py</code>
+To run the test you must build the sample app (<code>sample-code/apps/TestApp/TestApp.xcodeproj</code>) in Xcode.
+You can find the compiled app using spotlight from the command line. <code>mdfind -name TestApp.app</code>
+Use that path to run the sample test <code>python js-test.py "/path/to/sample.app"</code></p>
+
+<p>An example of the webdriver approach lives in <code>sample-code/webdriver-test.py</code>
+Compile and find the app as you did in the previous example and then launch the webdriver server. <code>python server.py "/path/to/sample.app"</code>
+Now you can run a test against that server. <code>python webdriver-test.py</code></p>
+
+<h2>Using with a <a href="http://bitbeam.org">Bitbeambot</a>
+</h2>
+
+<ol>
+<li>Connect the bitbeambot and place a connected iPad beneath it</li>
+<li>Build and install the calibration app in appium/robot/RobotCalibration/RobotCalibration/xcodeproj to the iPad</li>
+<li>Run the calibration script <code>python appium/robot/bitbeambot-d2/calibrate.py UDID /dev/tty.robot_usb_handle</code>
+</li>
+<li>Launch a webdriver server with the -b an d-c flags set <br><code>python server.py -u UDID -b /dev/tty.robot_usb_handle -c /path/to/appium/robot/bitbeambot-d2/calibration.pickle Your.Bundle.Identifier</code>
+</li>
+<li>Now Appium will send tap actions to the bitbeambot instead of through UIAutomation</li>
+</ol><h2>Contributing</h2>
+
+<p>Fork the project, make a change, and send a pull request! </p>
+
+<h2>Mailing List</h2>
+
+<p><a href="https://groups.google.com/d/forum/appium-discuss">Discussion Group</a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
