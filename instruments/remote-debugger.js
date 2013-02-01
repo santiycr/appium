@@ -146,7 +146,7 @@ msg.send_alert = {
     WIRSocketDataKey: {
       method: "Runtime.evaluate",
       params: {
-        expression: 'document.title;',
+        expression: 'alert("hi");',
         //objectGroup: "console",
         //includeCommandLineAPI: true,
         //doNotPauseOnExceptionsAndMuteConsole: true,
@@ -189,9 +189,12 @@ var handlers = {
     }
   },
   _rpc_applicationSentData: function(plist) {
-    var msgId = plist.__argument.WIRMessageDataKey.id;
-    dataCbs[msgId](plist.__argument.WIRMessageDataKey.result);
+    var dataKey = JSON.parse(plist.__argument.WIRMessageDataKey.toString('utf8'))
+      , msgId = dataKey.id
+      , result = dataKey.result;
+    dataCbs[msgId](result);
   },
+
   _rpc_applicationDisconnected: function (plist) {
     process.exit(0);
   }
@@ -201,8 +204,7 @@ var handle = function (plist) {
   if( ! plist.__selector ) return;
   var selector = plist.__selector.slice(0, -1);
 
-  logger.info('handle'.cyan, plist);
-
+  logger.info('handle'.cyan, selector);
   (handlers[selector] || noop)(plist);
 };
 
